@@ -27,11 +27,8 @@ public class hostelMSDaoImpl implements hostelMSDao {
 			}
 			else {
 				throw new GlobalException("User already Existed ");
-			}
-			
+			}	
 		}
-		
-		
 	}
 
 	@Override
@@ -52,7 +49,7 @@ public class hostelMSDaoImpl implements hostelMSDao {
 			}
 			}
 			else {
-				throw new GlobalException("Wrong Username or Password...!!");
+				throw new GlobalException("INVALID USERNAME...!!");
 			}	
 		}	
 	}

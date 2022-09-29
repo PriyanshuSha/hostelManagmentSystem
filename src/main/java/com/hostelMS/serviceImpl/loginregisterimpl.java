@@ -42,7 +42,7 @@ import com.hostelMS.service.userdashboard;
 		u1.setUserRoom(null);
 		u1.setUserFee(0);
 		
-		if(Pattern.matches("[a-zA-Z]{4,}", uname)&&Pattern.matches("[a-zA-Z0-9@#]{6,}",upwd)&&Pattern.matches("[0-9]{10}", uphone))
+		if(Pattern.matches("[a-zA-Z]{4,}", uname)&&Pattern.matches("[a-zA-Z0-9@#]{6,}",upwd)&&Pattern.matches("[0-9]{10,}", uphone))
 		{
 			
 			int status=dao.registration(u1);
