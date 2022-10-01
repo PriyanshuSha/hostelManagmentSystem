@@ -1,7 +1,13 @@
 package com.hostelMS.serviceImpl;
 
 import java.util.Scanner;
+import java.util.Set;
 import java.util.regex.Pattern;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 
 import org.apache.log4j.Logger;
 
@@ -15,14 +21,13 @@ import com.hostelMS.service.loginregister;
 import com.hostelMS.service.userdashboard;
 
 
-
     public class loginregisterimpl implements loginregister {
 	    static Logger log=Logger.getLogger(App.class);
 	    static Scanner bs=new Scanner(System.in);
 	    static hostelMSDao dao=new hostelMSDaoImpl();
 	
 	
-	public void register() throws GlobalException{
+	public void register() throws GlobalException{             // Here we perform a register related operations
 		log.info("welcome to registeration");
 		log.info("Enter Username");
 		String uname=bs.next();
@@ -42,23 +47,32 @@ import com.hostelMS.service.userdashboard;
 		u1.setUserRoom(null);
 		u1.setUserFee(0);
 		
-		if(Pattern.matches("[a-zA-Z]{4,}", uname)&&Pattern.matches("[a-zA-Z0-9@#]{6,}",upwd)&&Pattern.matches("[0-9]{10,}", uphone))
-		{
+		
 			
-			int status=dao.registration(u1);
+		ValidatorFactory vf= Validation.buildDefaultValidatorFactory();
+		Validator valid=vf.getValidator();
+		
+		Set<ConstraintViolation<user>> violations=	valid.validate(u1);
+		
+		if(violations.size()>0)
+		{
+			for(ConstraintViolation<user> violate:violations)
+				log.info(violate.getMessage());
+		}
+		else {
+		int status=dao.registration(u1);
+			
 			if(status==1) {
 				log.info("Registration success");
 			}
 			else {
-				throw new GlobalException("Something went wrong...!!");
+				throw new GlobalException("Something went wrong");
 			}
-		    }
-		    else {
-			    throw new GlobalException("Invalid data Please Enter a valid data ");
-		    }
-}
+		}
+	}
 
-	public void login()throws GlobalException {
+
+	public void login()throws GlobalException {                          // Here we perform a login related operations
 		
 		log.info("welcome to Login");
 		log.info("Please Enter Your Username : ");

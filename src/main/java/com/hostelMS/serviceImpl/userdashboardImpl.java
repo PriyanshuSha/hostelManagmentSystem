@@ -13,10 +13,10 @@ import com.hostelMS.service.userdashboard;
 
    public class userdashboardImpl implements userdashboard {
 	
-	   static Logger log=Logger.getLogger(userdashboardImpl.class);
-	   static Scanner bs=new Scanner(System.in);
-	   static userdashboardImpl udl=new userdashboardImpl();
-	   static userDao dao=new userDaoImpl();
+	   static Logger log=Logger.getLogger(userdashboardImpl.class);           // This is use for logger implementation
+	   static Scanner bs=new Scanner(System.in);                              // Here we create a Scanner class object
+	   static userdashboardImpl udl=new userdashboardImpl();                  // Here we create a userdashboardImpl class object
+	   static userDao dao=new userDaoImpl();                                  // Here we create a userDaoImpl class object
 	   static int userId;
 	   
 	@Override
@@ -32,29 +32,25 @@ import com.hostelMS.service.userdashboard;
 			
 		switch(op) {
 		
-		case 1->udl.viewRoom();
-		
-		case 2->udl.viewDueAmount();
-		
-		case 3->udl.viewProfile();
-		
-		case 4->udl.changePhonenumber();
-		
-		case 5->udl.changePassword();
+		case 1->udl.viewRoom();                                              // Here we create a case for viewRooms
+		case 2->udl.viewDueAmount();                                         // Here we create a case for viewDueAmount
+		case 3->udl.viewProfile();                                           // Here we create a case for viewProfile
+		case 4->udl.changePhonenumber();                                     // Here we create a case for changePhonenumber
+		case 5->udl.changePassword();                                        // Here we create a case for changePassword
 		}
 		}
 	}
 
 	
 	@Override
-	public void viewRoom() {
+	public void viewRoom() {                                                // Here we perform a vieRoom related operations
 		
 	   user u1=dao.viewRoom(userId);
 	   log.info("HELLO "+u1.getUserName()+" YOUR ROOM NUMBER IS "+u1.getUserRoom().getRoomId()+" ROOM NAME IS "+u1.getUserRoom().getRoomName()+" AND IT IS "+u1.getUserRoom().getRoomType()+" ROOM ");
 	  }
 
 	@Override
-	public void viewDueAmount() {
+	public void viewDueAmount() {                                           // Here we perform a viewDueAmount related operations
 		
 	   int amount=dao.viewDueAmount(userId);
        log.info("YOUR FEE DUE UUPTO THIS MONTH IS : "+amount);
@@ -62,16 +58,15 @@ import com.hostelMS.service.userdashboard;
 
 	
 	@Override
-	public void viewProfile() {
+	public void viewProfile() {                                             // Here we perform a viewProfile related operations
 		
 	   user u1=dao.viewProfile(userId);
 	   log.info(u1);
 		
 	}
 
-	//to change phone number
 	@Override
-	public void changePhonenumber() {
+	public void changePhonenumber() {                                      // Here we perform a changePhonenumber related operations
 		log.info("ENTER NEW PHONE NUMBER ");
 		String phone=bs.next();
 		int st=dao.changePhone(userId, phone);
@@ -81,7 +76,7 @@ import com.hostelMS.service.userdashboard;
 	}
 
 	@Override
-	public void changePassword() throws GlobalException {
+	public void changePassword() throws GlobalException {                 // Here we perform a changePassword related operations
 		
 		log.info("PLEASE ENTER YOUR CURRENT PASSWORD ");
 		String oldpwd=bs.next();

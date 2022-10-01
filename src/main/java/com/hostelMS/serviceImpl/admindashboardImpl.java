@@ -2,9 +2,7 @@ package com.hostelMS.serviceImpl;
 
 import java.util.List;
 import java.util.Scanner;
-
 import org.apache.log4j.Logger;
-
 import com.hostelMS.dao.adminDao;
 import com.hostelMS.daoImpl.adminDaoImpl;
 import com.hostelMS.exception.GlobalException;
@@ -14,10 +12,10 @@ import com.hostelMS.service.admindashboard;
 
 
 public class admindashboardImpl implements admindashboard{
-	static Logger log=Logger.getLogger(admindashboardImpl.class);
-	static Scanner bs=new Scanner(System.in);
-	static admindashboard adl=new admindashboardImpl();
-	static adminDao dao=new adminDaoImpl();
+	static Logger log=Logger.getLogger(admindashboardImpl.class);         // This is use for logger implementation
+	static Scanner bs=new Scanner(System.in);                             // Here we create a Scanner class object
+	static admindashboard adl=new admindashboardImpl();                   // Here we create a admindashboardImpl class object     
+	static adminDao dao=new adminDaoImpl();                               // Here we create a adminDaoImpl class object     
 
 	@Override
 	public void dashboard() throws GlobalException {
@@ -31,16 +29,16 @@ public class admindashboardImpl implements admindashboard{
 		
 		switch(op) {
 			
-			case 1->adl.viewRooms();
-			case 2->adl.viewUsers();
-			case 3->adl.createRoom();
-			case 4->adl.allotRoom();
-			case 5->adl.userInARoom();
-			case 6->adl.viewUserProfile();
-			case 7->adl.addDueAmount();
-			case 8->adl.paidDueAmount();
-			case 9->adl.deleteUser();
-			default->System.exit(0);
+			case 1->adl.viewRooms();                                      // Here we create a case for viewRooms
+			case 2->adl.viewUsers();                                      // Here we create a case for viewUsers
+			case 3->adl.createRoom();                                     // Here we create a case for createRoom
+			case 4->adl.allotRoom();                                      // Here we create a case for allotRoom
+			case 5->adl.userInARoom();                                    // Here we create a case for userInARoom
+			case 6->adl.viewUserProfile();                                // Here we create a case for viewUserProfile
+			case 7->adl.addDueAmount();                                   // Here we create a case for addDueAmount
+			case 8->adl.paidDueAmount();                                  // Here we create a case for paidDueAmount
+			case 9->adl.deleteUser();                                     // Here we create a case for deleteUser
+			default->System.exit(0);                                      // Here we create a case for exit
 		}
 		
 		
@@ -49,7 +47,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void viewRooms() {
+	public void viewRooms() {                                             // Here we perform a vieRoom related operations
 		    List<room> roomList=dao.viewRoom();
 		    log.info("\nroom num\t\troomName\t\troomType");
 		for(room r:roomList)
@@ -58,7 +56,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void viewUsers() {
+	public void viewUsers() {                                             // Here we perform a viewUsers related operations
 		    List<user> userList=dao.viewUser();
 		    log.info("\nUser Id\t\tUserName\t\tuser Phone\t\tuserRoom");
 		for(user u:userList)
@@ -68,7 +66,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void createRoom() throws GlobalException {
+	public void createRoom() throws GlobalException {                    // Here we perform a createRoom related operations
 		log.info("ENTER ROOM ID");
 		int rId=bs.nextInt();
 		log.info("ENTER ROOM NAME");
@@ -94,7 +92,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void allotRoom() throws GlobalException {
+	public void allotRoom() throws GlobalException {                          // Here we perform a allotRoom related operations
 		log.info("Enter user Id");
 		int uid=bs.nextInt();
 		log.info("Enter room Id");
@@ -111,7 +109,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void deleteUser() throws GlobalException {
+	public void deleteUser() throws GlobalException {                         // Here we perform a deleteUser related operations
 		log.info("Enter user Id to delete");
 		int uid=bs.nextInt();
 		int st=dao.deleteUser(uid);
@@ -125,7 +123,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void userInARoom() {
+	public void userInARoom() {                                               // Here we perform a userInARoom related operations
 		log.info("Enter Room Id");
 		int rid=bs.nextInt();
 	List<user> userList=	dao.userInARoom(rid);
@@ -136,7 +134,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void addDueAmount() throws GlobalException {
+	public void addDueAmount() throws GlobalException {                         // Here we perform a addDueAmount related operations
 		log.info("Enter Amount to add");
 		int amount=bs.nextInt();
 		log.info("Enter user Id");
@@ -151,7 +149,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void paidDueAmount() throws GlobalException {
+	public void paidDueAmount() throws GlobalException {                          // Here we perform a paidDueAmount related operations
 		log.info("Enter Amount to pay");
 		int amount=bs.nextInt();
 		log.info("Enter user Id");
@@ -166,7 +164,7 @@ public class admindashboardImpl implements admindashboard{
 	}
 
 	@Override
-	public void viewUserProfile() throws GlobalException {
+	public void viewUserProfile() throws GlobalException {                         // Here we perform a viewUserProfile related operations
 		log.info("Enter user id");
 		int uid=bs.nextInt();
 		user u1=dao.viewUserProfile(uid);

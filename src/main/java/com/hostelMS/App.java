@@ -1,3 +1,7 @@
+/* This is a java program in which we perform a transaction's related to hostel Management System here we have a two dashboard user dashboard and admin dashboard 
+ * and here we perform login and  testing also 
+ * @author Priyanshu */
+
 package com.hostelMS;
 
 import java.util.Scanner;
@@ -16,13 +20,13 @@ public class App
     	
     	loginregister loginreg=new loginregisterimpl();
     	
-    	log.info("\nPress 1. For Registeration\nPress 2. For Login");
+    	log.info("\nPRESS 1. For Registeration\nPRESS 2. For Login");
     	
-    	int op=bs.nextInt();
+    	int op=bs.nextInt();                                                        // Here we read user transaction input
     	
     	switch(op) {
-    	case 1->loginreg.register();
-    	case 2->loginreg.login();
+    	case 1->loginreg.register();                                                // Here we call a register method
+    	case 2->loginreg.login();                                                   // Here we call a login method 
     	}
     }
 }
