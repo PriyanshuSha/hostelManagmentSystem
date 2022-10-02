@@ -30,11 +30,11 @@ public class AppTest
 	void registrationTest() throws GlobalException {
 		hostelMSDao dao=new hostelMSDaoImpl();
 		user u1=new user();                                     // Here we create one user for add user in registration
-		u1.setUserName("goaa");
-		u1.setUserPassword("gao0987");
-		u1.setUserPhone("1112223334");
+		u1.setUserName("Akhil");
+		u1.setUserPassword("akhil0007");
+		u1.setUserPhone("1111222345");
 		u1.setUserRole("student");
-		u1.setUserAddress("mudgao");
+		u1.setUserAddress("lucknow");
 		
 		user u2=new user();                                    // Here we create one user for check Exception in registration                          
 		u2.setUserName("ram ji");
@@ -57,7 +57,7 @@ public class AppTest
 		
 		assertAll(
 		()->assertEquals(1,udao.changePassword(13,"123456", "12345667")),                 // Here we check users password change or not 
-		()->assertThrows(Exception.class,()->udao.changePassword(500,"112233", "1234567"))// Here we check program throws exception or not when user not exist 
+		()->assertThrows(Exception.class,()->udao.changePassword(50,"112233", "1234567"))// Here we check program throws exception or not when user not exist 
 		);
 	    }
 	
@@ -68,9 +68,9 @@ public class AppTest
 		adminDao dao=new adminDaoImpl();                       // Here we create object of adminDaoImpl class 
 		
 		room r1=new room();                                    // Here we create one room for add room 
-		r1.setRoomId(110);
-		r1.setRoomName("gaoii");
-		r1.setRoomType("boii");
+		r1.setRoomId(111);
+		r1.setRoomName("super delux");
+		r1.setRoomType("fully AC");
 		
 		room r2=new room();                                    // Here we create one room for check exception is thrown or not 
 		r2.setRoomId(105);
@@ -120,7 +120,7 @@ public class AppTest
 		adminDao dao = new adminDaoImpl();                // Here we create object of adminDaoImpl class 
 		assertAll(
 				()-> assertEquals(1,dao.addUserAmount(2, 1000)), // Here we add users amount in there account 
-				()->assertThrows(Exception.class,()->dao.addUserAmount(100, 500)) // Here we check program throws exception or not when user is not exist  
+				()->assertThrows(Exception.class,()->dao.addUserAmount(50, 500)) // Here we check program throws exception or not when user is not exist  
 		);															
 	    }
 	
@@ -131,7 +131,7 @@ public class AppTest
 		adminDao dao = new adminDaoImpl();               // Here we create object of adminDaoImpl class 
 		assertAll(
 				()->assertEquals(1,dao.paidUserAmount(2, 100)),  // Here we reduce users amount in there account 
-				()->assertThrows(Exception.class,()->dao.paidUserAmount(100,400)) // Here we check program throws exception or not when user is not exist  
+				()->assertThrows(Exception.class,()->dao.paidUserAmount(50,400)) // Here we check program throws exception or not when user is not exist  
 		);
 	    }
        }
